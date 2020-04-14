@@ -1,6 +1,8 @@
 //Dr_T helping students get started on Unit 4 scoreboard
 //Using object oriented coding for a scoreboard:  Basketball
 //classes Team, Scoreboard //PRIVATE TEAM class members
+// Name: Gerardo Duron  Class: Pro. Fundimentals II
+// Date: 4/13/2020  Teacher: Dr. T
 #include <iostream>
 #include <unistd.h> //for sleep command
 #include <string>
