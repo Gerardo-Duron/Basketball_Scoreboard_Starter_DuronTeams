@@ -83,17 +83,18 @@ class Scoreboard
         system("clear"); //clear the screen 
         
         //Show Scoreboard
-        cout << "\t\t\t\t\t\tScoreboard Internal\n";
+        cout << "\t\t\t\t\t\tScoreboard \n";
         for(int i = 0; i<25; i++) { cout << "---"; }
         cout << "\t\t\t\t\t" << endl;
-         cout << "\tTeam 1 Name: \n" << "\t" << team1.getName() << endl;
-        cout << "\tTeam 1 Score: \n" << "\t\t" << team1.getScore() << endl;
+         cout << "\t\t(H) \n" << "\t" << team1.getName() << team2.getName() << endl;
+        cout << "\t   Score: \n" << "\t\t" << "\t" << team1.getScore() << endl;
+        cout << " Score: \n" << "\t\t" << team2.getScore() << endl;
         cout << "\t\t\t\t\t\t\tPeriod: " << period << endl; 
 
         //dealing with Boolean data
         if(poss == true)
         {
-          cout << "\t\t\t\t\t\tHome team has the ball" << endl; 
+          cout << "\t\t\t\t\tHome team has the ball" << endl; 
           for(int i = 0; i<25; i++) { cout << "---"; }
           cout << "\n" << endl; 
         }
@@ -131,30 +132,47 @@ void scoreboardControls()
        
        //Menu options for the user 
         cout << "Menu: " << endl; 
-        cout << "A. Update Team 1 Score" << endl; 
-         cout << "B. Update Team 2 Name" << endl; 
+        cout << "A. Update Home Team Name: " << endl; 
+        cout << "B. Update Home Team Score: " << endl; 
+        cout << "C. Update Visiting Team Name: " << endl;
+        cout << "D. Update Visiting Team Score: " << endl; 
         cout << "X. To Exit" << endl; 
         cin >> decision; 
 
         if(decision == 'a' || decision == 'A')
         {
-          cout << "Team 1 score update. \n";
-          cout << "What is the new score? > ";
-          cin >> newScore; 
-          tOneMain.setScore(newScore);
-          cout << "\nUpdating new score for Team1 to..." << tOneMain.getScore() << endl;   
+          cout << "Home Team Name. \n";
+          cout << "What is the new Name? > ";
+          cin >> newName; 
+          tOneMain.setName(newName);
+          cout << "\nUpdating new Name for Home Team to..." << tOneMain.getName() << endl;   
           sleep(3); //pause 3 seconds. 
           
         }
         else if(decision == 'b' || decision == 'B')
         {
-          cout << "Team 1 NAME update. \n";
+          cout << "Set Home Team Score: ";
+          cin >> newScore;
+          tOneMain.setScore(newScore);
+          cout << "Upadating new Score to..." << tOneMain.getScore() << endl;
+          sleep(3); // paused for 3 seconds 
+        }
+        else if(decision == 'c' || decision == 'C')
+        {
+          cout << "Visiting Team Name update. \n";
           cout << "What is the new Name? > ";
           cin >> newName; 
           tOneMain.setName(newName);
-          cout << "\nUpdating new name for Team1 to..." << tOneMain.getName() << endl;
+          cout << "\nUpdating new name for Visiting Team to..." << tOneMain.getName() << endl;
           sleep(3); //pause 3 seconds. 
-          
+        }
+        else if(decision == 'd' || decision == 'D')
+        {
+          cout << "Set Home Team Score: ";
+          cin >> newScore;
+          tOneMain.setScore(newScore);
+          cout << "Upadating new Score to..." << tOneMain.getScore() << endl;
+          sleep(3); // paused for 3 seconds 
         }
         else if(decision == 'x' || decision == 'X')
         {
