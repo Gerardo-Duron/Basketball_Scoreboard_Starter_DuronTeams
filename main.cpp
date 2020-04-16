@@ -14,7 +14,7 @@ class Team
   private: 
     int score; 
     int fouls; 
-    string name; 
+    string name, name1; 
     bool bonusFirstHalf;
     bool bonusSecondHalf;
   public: 
@@ -23,12 +23,14 @@ class Team
       score = 0;
       fouls = 0; 
       name = "default name";
+      name1 = "default name";
       bonusFirstHalf = 0;
       bonusSecondHalf = 0;
     }  
     void setScore(int s) { score = s; }
     void setFouls(int f) { fouls = f; }
     void setName(string n) { name = n; }
+    void setName1(string n1) { name1 = n1; }
     void setbonusFirstHalf(bool bns1) { bonusFirstHalf = bns1; }
     void setbonusSecondHalf(bool bns2) { bonusSecondHalf = bns2; }
     double getScore() const { return score; }
@@ -36,6 +38,7 @@ class Team
     double getbonusFirsthalf() const { return bonusFirstHalf; }
     double getbonusSecondHalf() const { return bonusSecondHalf; }
     string getName() const { return name; }
+    string getName1() const { return name1; }
 };
 
 class Scoreboard
@@ -48,7 +51,10 @@ class Scoreboard
     int playerNumber;
     int playerFouls;
     int minutes;
+    int homeBall;
+    int visitorBall;
     int seconds;
+    char decision = '\0';
   public:
     Scoreboard() //defualt constructor 
     {
@@ -58,6 +64,9 @@ class Scoreboard
       playerFouls = 0;
       minutes = 14;
       seconds = 0; 
+      homeBall = 0;
+      visitorBall = 0;
+      
 
     }  
     void setPeriod(int p) { period = p; }
@@ -69,6 +78,8 @@ class Scoreboard
     void setminutes(int m) { minutes = m; }
     void setseconds(int s) { seconds = s; }
     int getPeriod() const { return period; }
+    void sethomeBall(int hB) { homeBall = hB; }
+    void setvisitorBall(int vB) { visitorBall = vB; }
     bool getPoss() const { return poss; }
     Team getTeam1() const { return team1; }
     Team getTeam2()  const { return team2; }
@@ -76,6 +87,8 @@ class Scoreboard
     int getplayerFouls() const { return playerFouls; }
     int getminutes() const { return minutes; }
     int getseconds() const { return seconds; }
+    int gethomeBall() const { return homeBall; }
+    int getvisitorBall() const { return visitorBall; }
     void showScoreboard()
     {
 
@@ -83,26 +96,17 @@ class Scoreboard
         system("clear"); //clear the screen 
         
         //Show Scoreboard
-        cout << "\t\t\t\t\t\tScoreboard \n";
-        for(int i = 0; i<25; i++) { cout << "---"; }
-        cout << "\t\t\t\t\t" << endl;
-         cout << "\t\t(H) \n" << "\t" << team1.getName() << team2.getName() << endl;
-        cout << "\t   Score: \n" << "\t\t" << "\t" << team1.getScore() << endl;
-        cout << " Score: \n" << "\t\t" << team2.getScore() << endl;
-        cout << "\t\t\t\t\t\t\tPeriod: " << period << endl; 
-
-        //dealing with Boolean data
-        if(poss == true)
-        {
-          cout << "\t\t\t\t\tHome team has the ball" << endl; 
-          for(int i = 0; i<25; i++) { cout << "---"; }
-          cout << "\n" << endl; 
-        }
-        else
-        {
-          cout << "Visiting team has the ball" << endl; 
-        }
-
+        cout << setw(39) << "Scoreboard \n";
+        for(int i = 0; i<23; i++) { cout << "---"; }
+        cout << setw(35) << "Period: " << period << endl; 
+        cout << setw(12) << "(H)" << setw(46) << "(V) " << endl; 
+         cout << setw(17) << team1.getName() << setw(45) << team2.getName1() << endl;
+        cout << setw(14) << "Score:" << setw(45) << "Score:" << endl; 
+        cout << setw(11) << team1.getScore() << setw(45) << team2.getScore() << endl;
+        cout << setw(41) << "Team has the ball" << endl;
+        for(int i = 0; i<23; i++) { cout << "---"; }
+        cout << "\n";
+        
     }
 };
 
@@ -115,6 +119,7 @@ void scoreboardControls()
   char decision = '\0';
   int newScore = 0; 
   string newName = ""; 
+  string newName1 = "";
 
   s.setTeam1(tOneMain); // placed update Team1 object in s
   s.setTeam1(tTwoMain); // placed update Team2 object in s
@@ -136,6 +141,7 @@ void scoreboardControls()
         cout << "B. Update Home Team Score: " << endl; 
         cout << "C. Update Visiting Team Name: " << endl;
         cout << "D. Update Visiting Team Score: " << endl; 
+        cout << "E. Update Ball Posession: " << endl;
         cout << "X. To Exit" << endl; 
         cin >> decision; 
 
@@ -161,17 +167,17 @@ void scoreboardControls()
         {
           cout << "Visiting Team Name update. \n";
           cout << "What is the new Name? > ";
-          cin >> newName; 
-          tOneMain.setName(newName);
-          cout << "\nUpdating new name for Visiting Team to..." << tOneMain.getName() << endl;
+          cin >> newName1; 
+          tTwoMain.setName1(newName1);
+          cout << "\nUpdating new name for Visiting Team to..." << tTwoMain.getName1() << endl;
           sleep(3); //pause 3 seconds. 
         }
         else if(decision == 'd' || decision == 'D')
         {
-          cout << "Set Home Team Score: ";
+          cout << "Set Visiting Team Score: ";
           cin >> newScore;
-          tOneMain.setScore(newScore);
-          cout << "Upadating new Score to..." << tOneMain.getScore() << endl;
+          tTwoMain.setScore(newScore);
+          cout << "Upadating new Score to..." << tTwoMain.getScore() << endl;
           sleep(3); // paused for 3 seconds 
         }
         else if(decision == 'x' || decision == 'X')
