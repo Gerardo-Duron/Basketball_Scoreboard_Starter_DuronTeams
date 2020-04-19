@@ -127,7 +127,7 @@ class Scoreboard
         cout << setw(17) << team1.getCity() << setw(45) << team2.getCity1() << endl;
         cout << setw(14) << "Score:" << setw(45) << "Score:" << endl; 
         cout << setw(11) << team1.getScore() << setw(45) << team2.getScore() << endl;
-        cout << setw(20) << "Down: " << Down << setw(30) << "To Go: " << getYrdsToGo() << "\n" << endl;
+        cout << setw(20) << "Down: " << Down << setw(30) << "To Go: " << getYrdsToGo() << endl;
         cout << setw(41) << "Team has the ball" << endl;
         for(int i = 0; i<23; i++) { cout << "---"; }
         cout << "\n";
@@ -150,7 +150,7 @@ void scoreboardControls()
   string newName1 = "";
   string City = "";
   string City1 = "";
-  
+  int Down = 0;  
 
 
   s.setTeam1(tOneMain); // placed update Team1 object in s
@@ -230,6 +230,7 @@ void scoreboardControls()
           cout << "Upadating new Score to..." << tTwoMain.getScore() << endl;
           sleep(3); // paused for 3 seconds 
         }
+        
         else if(decision == 'x' || decision == 'X')
         {
           cout << "\nEXIT. Go Mavs!!!" << endl; 
