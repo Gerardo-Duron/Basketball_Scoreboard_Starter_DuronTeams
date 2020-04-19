@@ -15,7 +15,7 @@ class Team
   private: 
     int score; 
     int fouls; 
-    string name, name1, City; 
+    string name, name1, City, City1; 
     bool bonusFirstHalf;
     bool bonusSecondHalf;
     
@@ -29,6 +29,7 @@ class Team
       bonusFirstHalf = 0;
       bonusSecondHalf = 0;
       City = "default";
+      City1 = "default";
     }  
     void setScore(int s) { score = s; }
     void setFouls(int f) { fouls = f; }
@@ -37,6 +38,7 @@ class Team
     void setbonusFirstHalf(bool bns1) { bonusFirstHalf = bns1; }
     void setbonusSecondHalf(bool bns2) { bonusSecondHalf = bns2; }
     void setCity(string C) { City = C; }
+    void setCity1(string C1) { City1 = C1; }
     double getScore() const { return score; }
     double getFouls() const { return fouls; }
     double getbonusFirsthalf() const { return bonusFirstHalf; }
@@ -44,6 +46,7 @@ class Team
     string getName() const { return name; }
     string getName1() const { return name1; }
     string getCity() const { return City; }
+    string getCity1() const { return City1; }
 };
 
 class Scoreboard
@@ -121,7 +124,7 @@ class Scoreboard
     
         cout << setw(12) << "(H)" << setw(46) << "(V) " << endl; 
         cout << setw(17) << team1.getName() << setw(45) << team2.getName1() << endl;
-        cout << setw(17) << team1.getCity() << setw(45) << team2.getCity() << endl;
+        cout << setw(17) << team1.getCity() << setw(45) << team2.getCity1() << endl;
         cout << setw(14) << "Score:" << setw(45) << "Score:" << endl; 
         cout << setw(11) << team1.getScore() << setw(45) << team2.getScore() << endl;
         cout << setw(20) << "Down: " << Down << setw(30) << "To Go: " << getYrdsToGo() << "\n" << endl;
@@ -191,7 +194,7 @@ void scoreboardControls()
           cout << "Set Home Team City: ";
           cin >> City;
           tOneMain.setCity(City);
-          cout << "Upadating new City to..." << tOneMain.City() << endl;
+          cout << "Upadating new City to..." << tOneMain.getCity() << endl;
           sleep(3); // paused for 3 seconds 
         }
         else if(decision == 'c' || decision == 'C')
@@ -215,8 +218,8 @@ void scoreboardControls()
         {
           cout << "Visiting Team City. \n";
           cin >> City1; 
-          tTwoMain.City1(City1);
-          cout << "\nUpdating new City to..." << tTwoMain.City1() << endl;
+          tTwoMain.setCity1(City1);
+          cout << "\nUpdating new City to..." << tTwoMain.getCity1() << endl;
           sleep(3); //pause 3 seconds. 
         }
         else if(decision == 'f' || decision == 'F')
